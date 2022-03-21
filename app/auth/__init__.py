@@ -12,6 +12,7 @@ from app.response import success, error, notfound, unauth
 class Auth(Resource):
 
     def get(self):
+        app.logger.info(request.args if request.method in ('GET', ) else request.form)
         parser = reqparse.RequestParser()
         parser.add_argument('client_id', type=str, required=True)
         parser.add_argument('redirect_uri', type=str, required=True)
@@ -26,6 +27,7 @@ class Auth(Resource):
 class Token(Resource):
 
     def post(self):
+        app.logger.info(request.args if request.method in ('GET', ) else request.form)
         parser = reqparse.RequestParser()
         parser.add_argument('client_id', type=str, required=True)
         parser.add_argument('client_secret', type=str, required=True)
@@ -41,7 +43,9 @@ class auth(object):
 
     @staticmethod
     def init_app(app):
+        app.logger.info('?')
         api = Api()
-        api.add_resource(Auth, '/v1/authorize', endpoint='auth-v1')
-        api.add_resource(Token, '/v1/token', endpoint='token-v1')
+        api.add_resource(Auth, '/a/v1/authorize', endpoint='auth-v1')
+        api.add_resource(Token, '/a/v1/token', endpoint='token-v1')
         api.init_app(app)
+
