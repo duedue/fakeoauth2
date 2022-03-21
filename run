@@ -10,6 +10,6 @@ from app import create_app
 if __name__ == '__main__':
     try:
         app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-        wsgi.server(eventlet.listen(('127.0.0.1', 25030)), app)
+        wsgi.server(eventlet.listen(('127.0.0.1', 54321)), app)
     except:
         raise
