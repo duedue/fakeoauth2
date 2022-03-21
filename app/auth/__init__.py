@@ -39,6 +39,13 @@ class Token(Resource):
 
         return success()
 
+class Callback(Resource):
+
+    def post(self):
+        app.logger.info(request.args if request.method in ('GET', ) else request.form)
+
+        return success()
+
 class auth(object):
 
     @staticmethod
@@ -47,5 +54,6 @@ class auth(object):
         api = Api()
         api.add_resource(Auth, '/a/v1/authorize', endpoint='auth-v1')
         api.add_resource(Token, '/a/v1/token', endpoint='token-v1')
+        api.add_resource(Callback, '/a/v1/callback', endpoint='callback-v1')
         api.init_app(app)
 
