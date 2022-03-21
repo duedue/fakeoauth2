@@ -15,4 +15,6 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     app.secret_key = 'fakeoauth2'
 
+    auth.init_app(app)
+
     return app
