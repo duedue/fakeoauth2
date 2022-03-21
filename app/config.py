@@ -3,6 +3,7 @@
 
 
 class Config(object):
+    GOOGLE_SECRET = "fortest"
 
     @staticmethod
     def init_app(app):
